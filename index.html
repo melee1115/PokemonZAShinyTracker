@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pokemon Shiny Tracker - Track your shiny Pokemon encounters">
+    <meta name="theme-color" content="#FF0000">
+    <title>Pokemon Shiny Tracker</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23FF0000' width='192' height='192'/><circle cx='96' cy='96' r='60' fill='white'/><circle cx='96' cy='96' r='50' fill='%23FF0000'/></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23FF0000' width='192' height='192'/><circle cx='96' cy='96' r='60' fill='white'/><circle cx='96' cy='96' r='50' fill='%23FF0000'/></svg>">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Shiny Tracker">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔴 Pokemon Shiny Tracker</h1>
+            <p>Track your shiny encounters across Pokemon Scarlet & Violet</p>
+        </header>
+
+        <div class="controls">
+            <button id="resetBtn" class="btn btn-danger">Reset All</button>
+            <button id="exportBtn" class="btn btn-primary">Export Data</button>
+            <button id="importBtn" class="btn btn-primary">Import Data</button>
+            <input type="file" id="fileInput" accept=".json" style="display: none;">
+        </div>
+
+        <div class="gallery" id="gallery"></div>
+
+        <div class="status-bar">
+            <p>Tracked: <span id="trackedCount">0</span>/9</p>
+            <p id="syncStatus" class="sync-status">✓ Synced</p>
+        </div>
+    </div>
+
+    <script src="db.js"></script>
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').catch(err => console.log('SW registration failed:', err));
+        }
+    </script>
+</body>
+</html>
